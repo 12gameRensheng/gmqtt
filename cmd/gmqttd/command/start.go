@@ -101,7 +101,17 @@ func NewStartCmd() *cobra.Command {
 		Run: func(cmd *cobra.Command, args []string) {
 			var err error
 			must(err)
-			c, err := config.ParseConfig(ConfigFile)
+			// c, err := config.ParseConfig(ConfigFile)
+			/**
+			* @desc: 新增代码 用户授权账号密码 和 写死配置文件
+			* @date: 2024-06-23 18:51
+			 */
+			config.UserConfig.ParseConfig("user.yml")
+			if ConfigFile == "" {
+				ConfigFile = "default_config.yml"
+			}
+			c, err := config.ParseConfig("default_config.yml")
+
 			if os.IsNotExist(err) {
 				must(err)
 			} else {

@@ -30,6 +30,8 @@ Gmqtt已用于生产，效果良好。生产环境服务于大约数百个客户
 $ git clone https://github.com/DrmagicE/gmqtt
 $ cd gmqtt/cmd/gmqttd
 $ go run . start -c default_config.yml
+# 打包
+$ go build. 
 ```
 
 ## 配置

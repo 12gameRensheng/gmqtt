@@ -22,7 +22,12 @@ func (a *Auth) OnBasicAuthWrapper(pre server.OnBasicAuth) server.OnBasicAuth {
 		if err != nil {
 			return err
 		}
-		ok, err := a.validate(string(req.Connect.Username), string(req.Connect.Password))
+		// ok, err := a.validateV2(string(req.Connect.Username), string(req.Connect.Password))
+		/**
+		* @desc: 新增验证代码 不走之前的逻辑
+		* @date: 2024-06-23 18:51
+		 */
+		ok, err := a.validateV2(string(req.Connect.Username), string(req.Connect.Password))
 		if err != nil {
 			return err
 		}

@@ -116,6 +116,22 @@ func (a *Auth) validate(username, password string) (permitted bool, err error) {
 	return hashedPassword == hex.EncodeToString(rs), nil
 }
 
+/**
+ * @desc: 新增验证代码 不走之前的逻辑
+ * @date: 2024-06-23 18:51
+ */
+func (a *Auth) validateV2(username, password string) (permitted bool, err error) {
+	// fmt.Println("开始", username, password)
+	for _, v := range config.UserConfig.Users {
+		// fmt.Println("v", v.Username, v.Password)
+		if v.Username == username && v.Password == password {
+			permitted = true
+			return
+		}
+	}
+	return
+}
+
 var registerAPI = func(service server.Server, a *Auth) error {
 	apiRegistrar := service.APIRegistrar()
 	RegisterAccountServiceServer(apiRegistrar, a)
